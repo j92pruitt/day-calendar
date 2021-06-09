@@ -28,7 +28,7 @@ for (i=0; i < 12; i++) {
         ${hour}:00${ampm}
         </label>
         <div class="col-10 container row">
-        <textarea class="col future" data-time="${hour}:00${ampm}"></textarea>
+        <textarea class="col future" data-time="${hour}:00${ampm}" data-index="${i}"></textarea>
         </div>
         <div class="col row align-items-center">
         <button class="saveBtn col d-flex justify-content-center align-items-center" data-index="${i}">
@@ -40,6 +40,12 @@ for (i=0; i < 12; i++) {
     )
 
     $('#schedule').append(test)
+
+    if (i < savedEvents.length) {
+        if (savedEvents[i] !== null) {
+            $(`textarea[data-index=${i}]`).text(savedEvents[i])
+        }
+    }
 
     $(`button[data-index="${i}"]`).click(function() {
         var index = $(this).attr('data-index');
